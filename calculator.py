@@ -7,8 +7,12 @@ while True:
 
     choice = input("Choose operation (1/2/3/4): ")
 
-    num1 = float(input("Enter first number: "))
-    num2 = float(input("Enter second number: "))
+    try:
+        num1 = float(input("Enter first number: "))
+        num2 = float(input("Enter second number: "))
+    except ValueError:
+        print("Error! Please enter valid numbers only.")
+        continue
 
     if choice == "1":
         print("Result:", num1 + num2)
