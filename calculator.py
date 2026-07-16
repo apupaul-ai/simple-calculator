@@ -28,6 +28,8 @@ def modulus(a, b):
     return a % b
 
 
+history = []   # ekhane shob calculation store hobe
+
 while True:
     print("\nCalculator Menu")
     print("1. Add (+)")
@@ -37,8 +39,22 @@ while True:
     print("5. Power (^)")
     print("6. Square Root (√)")
     print("7. Modulus (%)")
+    print("8. Show History")
 
-    choice = input("Choose operation (1-7): ")
+    choice = input("Choose operation (1-8): ")
+
+    if choice == "8":
+        if len(history) == 0:
+            print("No calculations yet.")
+        else:
+            print("\n--- Calculation History ---")
+            for item in history:
+                print(item)
+        again = input("\nDo you want to continue? (yes/no): ")
+        if again.lower() != "yes":
+            print("Thank you for using the calculator!")
+            break
+        continue
 
     try:
         if choice == "6":
@@ -51,21 +67,31 @@ while True:
         continue
 
     if choice == "1":
-        print("Result:", add(num1, num2))
+        result = add(num1, num2)
+        history.append(f"{num1} + {num2} = {result}")
     elif choice == "2":
-        print("Result:", subtract(num1, num2))
+        result = subtract(num1, num2)
+        history.append(f"{num1} - {num2} = {result}")
     elif choice == "3":
-        print("Result:", multiply(num1, num2))
+        result = multiply(num1, num2)
+        history.append(f"{num1} * {num2} = {result}")
     elif choice == "4":
-        print("Result:", divide(num1, num2))
+        result = divide(num1, num2)
+        history.append(f"{num1} / {num2} = {result}")
     elif choice == "5":
-        print("Result:", power(num1, num2))
+        result = power(num1, num2)
+        history.append(f"{num1} ** {num2} = {result}")
     elif choice == "6":
-        print("Result:", square_root(num1))
+        result = square_root(num1)
+        history.append(f"sqrt({num1}) = {result}")
     elif choice == "7":
-        print("Result:", modulus(num1, num2))
+        result = modulus(num1, num2)
+        history.append(f"{num1} % {num2} = {result}")
     else:
         print("Invalid choice!")
+        continue
+
+    print("Result:", result)
 
     again = input("\nDo you want to calculate again? (yes/no): ")
     if again.lower() != "yes":
